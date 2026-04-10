@@ -1,14 +1,13 @@
-name: Basic CI Workflow
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+name: Exp 7 Secret Test
+on: [push]
+
 jobs:
-  build:
+  secure-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Display a message
-        run: echo "Hello, GitHub Actions! Experiment 5 is working!"
+      - name: Use secret safely
+        env:
+          MY_KEY: ${{ secrets.API_KEY }}
+        run: |
+          echo "Accessing the secret..."
+          echo "The secret value is: $MY_KEY"
